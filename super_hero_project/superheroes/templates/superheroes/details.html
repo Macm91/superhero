@@ -8,13 +8,14 @@
 </head>
 <body>
     <h1> Hero Details! </h1>
-    <ul>
-        {% for hero in single_hero %}
-        <li> <h2>{{hero.name}}</h2></li>
-        <li> <h3>{{hero.alter_ego}}</h3></li>
-        <li> <h3>{{hero.primary_ability}}</h3></li>
-        <li> <h3>{{hero.catch_phrase}}</h3></li>
-        {% endfor %}
-    </ul>
+        <p id="details"><b>Name:</b> {{hero.name}}<br>
+        <b> Alter Ego:</b> {{hero.alter_ego}}</br>
+        <b> Primary Ability: </b>{{hero.primary_ability}}</br> 
+        <b> Secondary Ability: </b>{{hero.secondary_ability}}<br>
+        <b> Catch Phrase: </b>{{hero.catch_phrase}}<br>
+        </p>
+        <a href= "{% url 'superheroes:edit' hero.id %}">Click To Change Details</a>
+
+    
 </body>
 </html>

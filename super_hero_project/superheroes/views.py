@@ -1,3 +1,4 @@
+from django.db.models.base import ModelStateFieldsCacheDescriptor
 from django.shortcuts import render
 from django.http import HttpResponse , HttpResponseRedirect
 from django.urls import reverse
@@ -14,9 +15,9 @@ def index(request):
     return render(request,'superheroes/index.html', context)
 
 def detail (request, hero_id):
-    single_hero = Superhero.objects.get(pk = hero_id)
+    hero = Superhero.objects.get(pk = hero_id)
     context = {
-        'single_hero' : single_hero
+        'hero' : hero
     }
     return render(request, 'superheroes/details.html', context)
 
@@ -32,3 +33,21 @@ def create (request):
        return HttpResponseRedirect(reverse ('superheroes:index'))
     else:    
         return render(request, 'superheroes/create.html')
+
+    
+def edit(request, hero_id):
+    single_hero = Superhero.objects.get(pk=hero_id)
+    if request.method=='POST':
+        single_hero.name = request.POST.get('name')
+        single_hero.alter_ego = request.POST.get('alter_ego')
+        single_hero.primary_ability = request.POST.get('primary_ability')
+        single_hero.secondary_ability = request.POST.get('secondary_ability')
+        single_hero.catch_phrase = request.POST.get('catch_phrase')
+        # single_hero = Superhero(name=single_hero.name, alter_ego=single_hero.alter_ego, primary_ability=single_hero.primary_ability, secondary_abilty= single_hero.secondary_ability, catch_phrase=single_hero.catch_phrase)
+        single_hero.save()
+        return HttpResponseRedirect(reverse('superheroes:index'))
+    else:
+        return render (request, "superheroes/edit.html")
+
+def delete(request):
+        pass
