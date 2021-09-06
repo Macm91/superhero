@@ -1,3 +1,4 @@
+from superhero_project.super_hero_project import superheroes
 from django.db.models.base import ModelStateFieldsCacheDescriptor
 from django.shortcuts import render
 from django.http import HttpResponse , HttpResponseRedirect
@@ -43,11 +44,21 @@ def edit(request, hero_id):
         single_hero.primary_ability = request.POST.get('primary_ability')
         single_hero.secondary_ability = request.POST.get('secondary_ability')
         single_hero.catch_phrase = request.POST.get('catch_phrase')
-        # single_hero = Superhero(name=single_hero.name, alter_ego=single_hero.alter_ego, primary_ability=single_hero.primary_ability, secondary_abilty= single_hero.secondary_ability, catch_phrase=single_hero.catch_phrase)
         single_hero.save()
-        return HttpResponseRedirect(reverse('superheroes:index'))
-    else:
-        return render (request, "superheroes/edit.html")
+        return render (request, "superhetoes/index.html")
+        # return HttpResponseRedirect (reverse('superheroes:detail'))
+    else:    
+        return render (request, "superheroes/details.html")
+  
 
-def delete(request):
-        pass
+def delete(request, hero_id):
+    context={}
+    single_hero = Superhero.objects.get(pk=hero_id)
+    if request.method == "POST":
+        single_hero.delete()
+        return HttpResponseRedirect 
+
+
+        return HttpResponseRedirect("/")
+ 
+    return render(request, "delete_view.html", context)
