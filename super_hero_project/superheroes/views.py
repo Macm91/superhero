@@ -45,20 +45,16 @@ def edit(request, hero_id):
         single_hero.secondary_ability = request.POST.get('secondary_ability')
         single_hero.catch_phrase = request.POST.get('catch_phrase')
         single_hero.save()
-        return render (request, "superhetoes/index.html")
-        # return HttpResponseRedirect (reverse('superheroes:detail'))
+        return HttpResponseRedirect (reverse( 'superheroes:index'))
     else:    
-        return render (request, "superheroes/details.html")
+        context={
+            'single_hero': single_hero
+        }
+        return render (request, "superheroes/edit.html", context)
   
 
 def delete(request, hero_id):
     context={}
     single_hero = Superhero.objects.get(pk=hero_id)
-    if request.method == "POST":
-        single_hero.delete()
-        return HttpResponseRedirect 
-
-
-        return HttpResponseRedirect("/")
- 
-    return render(request, "delete_view.html", context)
+    single_hero.delete()
+    return HttpResponseRedirect(reverse('superheroes:index'))

@@ -14,17 +14,7 @@
         <b> Secondary Ability: </b>{{hero.secondary_ability}}<br>
         <b> Catch Phrase: </b>{{hero.catch_phrase}}<br>
         </p>
-
-        <form action="{% url 'superheroes:edit' hero.id %}" method='POST' id=edit>
-            {%csrf_token%}
-            <label for='edit'>Update Superhero Info Here</label><br>
-            Name: <input types="text" name="name" id="name"><br>
-            Alter Ego: <input types="text" name="alter_ego" id="alter_ego"><br>
-            Primary Ability: <input types="text" name="primary_ability" id="primary_ability"><br>
-            Secondary Ability: <input types="text" name="secondary_ability" id="secondary_ability"><br>
-            Catchphrase: <input types="text" name="catch_phrase" id="catch_phrase"><br>
-            <button type="submit"> Complete Update </button>
-        </form>
+        <button href="{% url 'superheroes:index' %}"> HOME</button>
         
 </body>
 </html>
