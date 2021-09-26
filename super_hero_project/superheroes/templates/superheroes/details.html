@@ -5,38 +5,68 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {background-color: powderblue;
+            text-align: center;}
+        h1   {color: blue;}
+        div{
+            border: 1%;
+            border-color: black;
+            margin-bottom: 10%;
+        }
+        a{
+            color:brown;
+        }
+        form{
+            padding: 5%
+        }
+        header{
+            background-color: darkblue;
+            margin-bottom: 10%;
+        }
+        #delete{
+            border-color: red;
+        }
+       
+
+        </style>
     <title >Superhero Details</title>
 </head>
 <body>
     <h1> Hero Details! </h1>
+    <header>
+        <form action="{% url 'superheroes:index'%}">
+            <input type="submit" value="Home">
+        </form>
+    </header> 
+        
+    <div>
         <p id="details"><b>Name:</b> {{hero.name}}<br>
         <b> Alter Ego:</b> {{hero.alter_ego}}</br>
         <b> Primary Ability: </b>{{hero.primary_ability}}</br> 
         <b> Secondary Ability: </b>{{hero.secondary_ability}}<br>
         <b> Catch Phrase: </b>{{hero.catch_phrase}}<br>
         </p>
-        
+    </div>
         
         <form action="{% url 'superheroes:edit' hero.id %}" method='POST' id=edit>
             {%csrf_token%}
             <label for='edit'>Update Superhero Info Here</label><br>
-            Name: <input types="text" name="name" id="name" value="hero.name"><br>
-            Alter Ego: <input types="text" name="alter_ego" id="alter_ego" value="hero.alter_ego"><br>
-            Primary Ability: <input types="text" name="primary_ability" id="primary_ability" value="hero.primary_ability"><br>
-            Secondary Ability: <input types="text" name="secondary_ability" id="secondary_ability" value="hero.secondary_ability"><br>
-            Catchphrase: <input types="text" name="catch_phrase" id="catch_phrase" value="catch_phrase"><br>
+            Name: <input types="text" name="name" id="name" value="{{hero.name}}"><br>
+            Alter Ego: <input types="text" name="alter_ego" id="alter_ego" value="{{hero.alter_ego}}"><br>
+            Primary Ability: <input types="text" name="primary_ability" id="primary_ability" value="{{hero.primary_ability}}"><br>
+            Secondary Ability: <input types="text" name="secondary_ability" id="secondary_ability" value="{{hero.secondary_ability}}"><br>
+            Catchphrase: <input types="text" name="catch_phrase" id="catch_phrase" value="{{hero.catch_phrase}}"><br>
             <button type="submit"> Complete Update </button>
         </form>
 
-        <form action="{% url 'superheroes:delete' hero.id %}" method="POST">
+        <form  action="{% url 'superheroes:delete' hero.id %}" method="POST">
             {%csrf_token%}
-            <input type="submit" value="Delete">
+            <input id= "delete"  type="submit" value="Delete">
         </form>
 
-        <form action="{% url 'superheroes:index'%}">
-            <input type="submit" value="Home">
-        </form>
+        
         
 </body>
 </html>

@@ -4,18 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+    body {background-color: powderblue;
+        text-align: center;}
+    h1   {color: blue;}
+    div{
+        border: 1%;
+        border-color: black;
+        margin-bottom: 10%;
+    }
+    a{
+        color:brown;
+    }
+    
+    </style>
     <title>Superhero Index</title>
 </head>
 <body>
     <h1>List of Heroes</h1>
-    <ul>
+        <div class="hero">
         {% for hero in all_heroes %}
-        <li> <h2>{{hero.name}} <a href="{% url 'superheroes:detail' hero.id %}"> Click For Details</a>
+        <h2> {{hero.name}} </h2><a href="{% url 'superheroes:detail' hero.id %}"> Click For Details</a>
 
         {% endfor %}
-    </ul>
+        </div>
     <a href= "{% url 'superheroes:create' %}">Add New Hero</a>
+    <br>
+    <img src="thor.jpeg" alt="Sad Thor" width="500" height="400">
 
 </body>
 </html>
