@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        body {
+          background-image: url('https://static.vecteezy.com/system/resources/previews/002/091/677/original/abstract-white-texture-background-design-3d-paper-for-book-poster-flyer-cover-website-advertising-illustration-vector.jpg');
+        }
+        </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Delete</title>
 </head>
 <body>
-    <form action="{% url 'superheroes:delete' hero.id %}" method="POST">
-        {%csrf_token%}
+    <form action = "{% url 'superheroes:delete' deleted_hero.id %}" method="POST">
+        {% csrf_token %}
+            <h2> Delete {{deleted_hero.name}}?</h2>><br>
+        <input type="submit" value="Delete">
+    </form>
+    <form action="{% url 'superheroes:index'%}">
+        <input type="submit" value="Cancel">
     </form>
 </body>
 </html>

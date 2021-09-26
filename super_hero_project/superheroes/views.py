@@ -1,4 +1,4 @@
-from superhero_project.super_hero_project import superheroes
+# from superhero_project.super_hero_project import superheroes
 from django.db.models.base import ModelStateFieldsCacheDescriptor
 from django.shortcuts import render
 from django.http import HttpResponse , HttpResponseRedirect
@@ -54,7 +54,13 @@ def edit(request, hero_id):
   
 
 def delete(request, hero_id):
-    context={}
-    single_hero = Superhero.objects.get(pk=hero_id)
-    single_hero.delete()
-    return HttpResponseRedirect(reverse('superheroes:index'))
+    delete_hero = Superhero.objects.get(pk = hero_id)
+    if request.method == 'POST':
+        Superhero.objects.filter(pk= hero_id).delete()
+
+        return HttpResponseRedirect(reverse('superheroes:index'))
+    else:
+        context = {
+            'deleted_hero': delete_hero
+        }
+        return render(request, 'superheroes/delete.html', context)

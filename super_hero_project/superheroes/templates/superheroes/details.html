@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Superhero Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title >Superhero Details</title>
 </head>
 <body>
     <h1> Hero Details! </h1>
@@ -14,7 +16,26 @@
         <b> Secondary Ability: </b>{{hero.secondary_ability}}<br>
         <b> Catch Phrase: </b>{{hero.catch_phrase}}<br>
         </p>
-        <button href="{% url 'superheroes:index' %}"> HOME</button>
+        
+        
+        <form action="{% url 'superheroes:edit' hero.id %}" method='POST' id=edit>
+            {%csrf_token%}
+            <label for='edit'>Update Superhero Info Here</label><br>
+            Name: <input types="text" name="name" id="name" value="hero.name"><br>
+            Alter Ego: <input types="text" name="alter_ego" id="alter_ego" value="hero.alter_ego"><br>
+            Primary Ability: <input types="text" name="primary_ability" id="primary_ability" value="hero.primary_ability"><br>
+            Secondary Ability: <input types="text" name="secondary_ability" id="secondary_ability" value="hero.secondary_ability"><br>
+            Catchphrase: <input types="text" name="catch_phrase" id="catch_phrase" value="catch_phrase"><br>
+            <button type="submit"> Complete Update </button>
+        </form>
+
+        <form action="{% url 'superheroes:delete' hero.id %}" method="POST">
+            {%csrf_token%}
+        </form>
+
+        <form action="{% url 'superheroes:index'%}">
+            <input type="submit" value="Home">
+        </form>
         
 </body>
 </html>
