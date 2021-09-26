@@ -31,6 +31,7 @@
 
         <form action="{% url 'superheroes:delete' hero.id %}" method="POST">
             {%csrf_token%}
+            <input type="submit" value="Delete">
         </form>
 
         <form action="{% url 'superheroes:index'%}">
